@@ -6,14 +6,14 @@ var Room = {
 	_FIRE_COOL_DELAY: 5 * 60 * 1000, // time after a stoke before the fire cools
 	_ROOM_WARM_DELAY: 30 * 1000, // time between room temperature updates
 	_BUILDER_STATE_DELAY: 0.5 * 60 * 1000, // time between builder state updates
-	_STOKE_COOLDOWN: 10, // cooldown to stoke the fire
+	_STOKE_COOLDOWN: 1, // cooldown to stoke the fire
 	_NEED_WOOD_DELAY: 15 * 1000, // from when the stranger shows up, to when you need wood
 	buttons: {},
 	Craftables: {
 		'trap': {
 			name: _('trap'),
 			button: null,
-			maximum: 10,
+			maximum: 100,
 			availableMsg: _('builder says she can make traps to catch any creatures might still be alive out there'),
 			buildMsg: _('more traps to catch more creatures'),
 			maxMsg: _("more traps won't help now"),
@@ -21,7 +21,7 @@ var Room = {
 			cost: function () {
 				var n = $SM.get('game.buildings["trap"]', true);
 				return {
-					'wood': 10 + (n * 10)
+					'wood': 1 + (n * 1)
 				};
 			},
 			audio: AudioLibrary.BUILD_TRAP
@@ -35,7 +35,7 @@ var Room = {
 			type: 'building',
 			cost: function () {
 				return {
-					'wood': 30
+					'wood': 500
 				};
 			},
 			audio: AudioLibrary.BUILD_CART
@@ -43,7 +43,7 @@ var Room = {
 		'hut': {
 			name: _('hut'),
 			button: null,
-			maximum: 20,
+			maximum: 100,
 			availableMsg: _("builder says there are more wanderers. says they'll work, too."),
 			buildMsg: _('builder puts up a hut, out in the forest. says word will get around.'),
 			maxMsg: _('no more room for huts.'),
@@ -51,7 +51,7 @@ var Room = {
 			cost: function () {
 				var n = $SM.get('game.buildings["hut"]', true);
 				return {
-					'wood': 100 + (n * 50)
+					'wood': 10 + (n * 10)
 				};
 			},
 			audio: AudioLibrary.BUILD_HUT
@@ -65,9 +65,9 @@ var Room = {
 			type: 'building',
 			cost: function () {
 				return {
-					wood: 200,
-					fur: 10,
-					meat: 5
+					wood: 100,
+					fur: 1,
+					meat: 1
 				};
 			},
 			audio: AudioLibrary.BUILD_LODGE
@@ -81,8 +81,8 @@ var Room = {
 			type: 'building',
 			cost: function () {
 				return {
-					'wood': 400,
-					'fur': 100
+					'wood': 40,
+					'fur': 10
 				};
 			},
 			audio: AudioLibrary.BUILD_TRADING_POST
@@ -96,8 +96,8 @@ var Room = {
 			type: 'building',
 			cost: function () {
 				return {
-					'wood': 500,
-					'fur': 50
+					'wood': 50,
+					'fur': 5
 				};
 			},
 			audio: AudioLibrary.BUILD_TANNERY
@@ -111,8 +111,8 @@ var Room = {
 			type: 'building',
 			cost: function () {
 				return {
-					'wood': 600,
-					'meat': 50
+					'wood': 60,
+					'meat': 5
 				};
 			},
 			audio: AudioLibrary.BUILD_SMOKEHOUSE
@@ -126,8 +126,8 @@ var Room = {
 			type: 'building',
 			cost: function () {
 				return {
-					'wood': 800,
-					'leather': 100,
+					'wood': 80,
+					'leather': 0,
 					'scales': 10
 				};
 			},
@@ -142,9 +142,9 @@ var Room = {
 			type: 'building',
 			cost: function () {
 				return {
-					'wood': 1500,
-					'iron': 100,
-					'coal': 100
+					'wood': 150,
+					'iron': 0,
+					'coal': 0
 				};
 			},
 			audio: AudioLibrary.BUILD_STEELWORKS
@@ -158,9 +158,9 @@ var Room = {
 			type: 'building',
 			cost: function () {
 				return {
-					'wood': 3000,
-					'steel': 100,
-					'sulphur': 50
+					'wood': 300,
+					'steel': 0,
+					'sulphur': 0
 				};
 			},
 			audio: AudioLibrary.BUILD_ARMOURY
@@ -186,7 +186,7 @@ var Room = {
 			buildMsg: _('this waterskin\'ll hold a bit of water, at least'),
 			cost: function () {
 				return {
-					'leather': 50
+					'leather': 5
 				};
 			},
 			audio: AudioLibrary.CRAFT_WATERSKIN
@@ -199,8 +199,8 @@ var Room = {
 			buildMsg: _('the cask holds enough water for longer expeditions'),
 			cost: function () {
 				return {
-					'leather': 100,
-					'iron': 20
+					'leather': 10,
+					'iron': 2
 				};
 			},
 			audio: AudioLibrary.CRAFT_CASK
@@ -213,8 +213,8 @@ var Room = {
 			buildMsg: _('never go thirsty again'),
 			cost: function () {
 				return {
-					'iron': 100,
-					'steel': 50
+					'iron': 10,
+					'steel': 5
 				};
 			},
 			audio: AudioLibrary.CRAFT_WATER_TANK
@@ -226,7 +226,7 @@ var Room = {
 			buildMsg: _("this spear's not elegant, but it's pretty good at stabbing"),
 			cost: function () {
 				return {
-					'wood': 100,
+					'wood': 10,
 					'teeth': 5
 				};
 			},
@@ -240,7 +240,7 @@ var Room = {
 			buildMsg: _('carrying more means longer expeditions to the wilds'),
 			cost: function () {
 				return {
-					'leather': 200
+					'leather': 20
 				};
 			},
 			audio: AudioLibrary.CRAFT_RUCKSACK
@@ -253,8 +253,8 @@ var Room = {
 			buildMsg: _('the wagon can carry a lot of supplies'),
 			cost: function () {
 				return {
-					'wood': 500,
-					'iron': 100
+					'wood': 50,
+					'iron': 10
 				};
 			},
 			audio: AudioLibrary.CRAFT_WAGON
@@ -267,9 +267,9 @@ var Room = {
 			buildMsg: _('the convoy can haul mostly everything'),
 			cost: function () {
 				return {
-					'wood': 1000,
-					'iron': 200,
-					'steel': 100
+					'wood': 100,
+					'iron': 20,
+					'steel': 10
 				};
 			},
 			audio: AudioLibrary.CRAFT_CONVOY
@@ -281,8 +281,8 @@ var Room = {
 			buildMsg: _("leather's not strong. better than rags, though."),
 			cost: function () {
 				return {
-					'leather': 200,
-					'scales': 20
+					'leather': 20,
+					'scales': 2
 				};
 			},
 			audio: AudioLibrary.CRAFT_LEATHER_ARMOUR
@@ -294,8 +294,8 @@ var Room = {
 			buildMsg: _("iron's stronger than leather"),
 			cost: function () {
 				return {
-					'leather': 200,
-					'iron': 100
+					'leather': 20,
+					'iron': 1
 				};
 			},
 			audio: AudioLibrary.CRAFT_IRON_ARMOUR
@@ -307,8 +307,8 @@ var Room = {
 			buildMsg: _("steel's stronger than iron"),
 			cost: function () {
 				return {
-					'leather': 200,
-					'steel': 100
+					'leather': 20,
+					'steel': 1
 				};
 			},
 			audio: AudioLibrary.CRAFT_STEEL_ARMOUR
@@ -320,9 +320,9 @@ var Room = {
 			buildMsg: _("sword is sharp. good protection out in the wilds."),
 			cost: function () {
 				return {
-					'wood': 200,
-					'leather': 50,
-					'iron': 20
+					'wood': 20,
+					'leather': 5,
+					'iron': 2
 				};
 			},
 			audio: AudioLibrary.CRAFT_IRON_SWORD
@@ -334,9 +334,9 @@ var Room = {
 			buildMsg: _("the steel is strong, and the blade true."),
 			cost: function () {
 				return {
-					'wood': 500,
-					'leather': 100,
-					'steel': 20
+					'wood': 50,
+					'leather': 10,
+					'steel': 2
 				};
 			},
 			audio: AudioLibrary.CRAFT_STEEL_SWORD
@@ -347,9 +347,9 @@ var Room = {
 			buildMsg: _("black powder and bullets, like the old days."),
 			cost: function () {
 				return {
-					'wood': 200,
-					'steel': 50,
-					'sulphur': 50
+					'wood': 20,
+					'steel': 5,
+					'sulphur': 5
 				};
 			},
 			audio: AudioLibrary.CRAFT_RIFLE
@@ -406,7 +406,7 @@ var Room = {
 			type: 'good',
 			cost: function () {
 				return {
-					'scales': 50, 'teeth': 30
+					'scales': 5, 'teeth': 3
 				};
 			},
 			audio: AudioLibrary.BUY_MEDICINE
@@ -424,8 +424,8 @@ var Room = {
 			type: 'good',
 			cost: function () {
 				return {
-					'scales': 10,
-					'teeth': 10
+					'scales': 1,
+					'teeth': 1
 				};
 			},
 			audio: AudioLibrary.BUY_ENERGY_CELL
@@ -443,8 +443,8 @@ var Room = {
 			type: 'weapon',
 			cost: function () {
 				return {
-					'scales': 100,
-					'teeth': 50
+					'scales': 1,
+					'teeth': 5
 				};
 			},
 			audio: AudioLibrary.BUY_GRENADES
